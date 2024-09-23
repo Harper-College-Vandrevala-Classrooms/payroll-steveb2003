@@ -12,14 +12,21 @@ public class Payroll
     System.out.print("Please enter the number of dependents you have: ");
     int dependents = in.nextInt();
 
-    System.out.print("Please enter your pay rate: ");
-    double pay_rate= in.nextDouble();
+    
+    double pay_rate;
+    do {
+      System.out.print("Please enter your pay rate: ");
+      pay_rate = in.nextDouble();
+      if (pay_rate < 0) {
+        System.out.println("Pay rate cannot be negative. Please enter a valid pay rate.");
+      }
+    } while (pay_rate < 0);
 
     double gross_pay = total_pay(hours_worked, pay_rate);
     double total_expenses = expenses(gross_pay, dependents);
 
     in.nextLine();
-    
+
     System.out.print("Please enter your life insurance plan. Enter 'Single Plan' if single, 'Married Plan' if married, 'Married with Children' if you have a family, or 'No Plan' if you have no plan: ");
     String plan = in.nextLine();
     if (plan.equals("Single Plan"))
@@ -40,6 +47,11 @@ public class Payroll
     else if (plan.equals("No Plan"))
     {
       total_expenses +=0;
+    }
+
+    else
+    {
+      System.out.println("Please enter valid plan option");
     }
 
 
