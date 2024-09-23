@@ -18,12 +18,37 @@ public class Payroll
     double gross_pay = total_pay(hours_worked, pay_rate);
     double total_expenses = expenses(gross_pay, dependents);
 
+    in.nextLine();
+    
+    System.out.print("Please enter your life insurance plan. Enter 'Single Plan' if single, 'Married Plan' if married, 'Married with Children' if you have a family, or 'No Plan' if you have no plan: ");
+    String plan = in.nextLine();
+    if (plan.equals("Single Plan"))
+    {
+      total_expenses +=5;
+    }
+
+    else if (plan.equals("Married Plan"))
+    {
+      total_expenses += 10;
+    }
+
+    else if (plan.equals("Married with Children"))
+    {
+      total_expenses +=15;
+    }
+
+    else if (plan.equals("No Plan"))
+    {
+      total_expenses +=0;
+    }
+
+
+
     System.out.printf("%nTotal Hours Worked: %d%nGross Pay: %7.2f%nTotal Expenses: %7.2f%nNet Pay: %7.2f%n", hours_worked, gross_pay, total_expenses, gross_pay - total_expenses);
     System.out.print("Goodbye!");
     in.close();
 
   }
-
   public static double total_pay(int hours_worked, double pay_rate)
   {
     final int REGULAR_TIME = 40;
